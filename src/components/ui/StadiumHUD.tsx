@@ -38,7 +38,10 @@ export const StadiumHUD: React.FC = () => {
     }
   };
 
+  const gamePhase = useGameStore((s) => s.gamePhase);
   const currentStage = CAMPAIGN_STAGES.find((st) => st.id === currentLevelId) || CAMPAIGN_STAGES[0];
+
+  if (gamePhase === 'ready') return null;
 
   // Format mm:ss (starts at 03:00)
   const minutes = Math.floor(matchTimeLeft / 60);

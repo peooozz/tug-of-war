@@ -160,20 +160,24 @@ export const App: React.FC = () => {
       <div className="ambient-orb ambient-orb-purple" />
 
       {/* Top Stadium HUD */}
-      <div className="relative z-10 w-full">
-        <StadiumHUD />
-      </div>
-
-      {/* Main 3-Column Arena Layout */}
-      <main className="flex-1 w-full grid grid-cols-1 md:grid-cols-[auto_1fr_auto] gap-2 sm:gap-3 xl:gap-4 min-h-0 relative">
-        {/* Left: Team 1 Panel (Blue) */}
-        <div className="h-full flex items-center justify-center">
-          <TeamPanel
-            team="team1"
-            isKeyboardTarget={activeTeam === 'team1' || isBotMode}
-            onFocusTeam={() => setActiveTeam('team1')}
-          />
+      {gamePhase !== 'ready' && (
+        <div className="relative z-10 w-full">
+          <StadiumHUD />
         </div>
+      )}
+
+      {/* Main Arena Layout */}
+      <main className={`flex-1 w-full ${gamePhase !== 'ready' ? 'flex' : 'grid grid-cols-1 md:grid-cols-[auto_1fr_auto]'} gap-2 sm:gap-3 xl:gap-4 min-h-0 relative`}>
+        {/* Left: Team 1 Panel (Blue) */}
+        {gamePhase !== 'ready' && (
+          <div className="h-full flex items-center justify-center">
+            <TeamPanel
+              team="team1"
+              isKeyboardTarget={activeTeam === 'team1' || isBotMode}
+              onFocusTeam={() => setActiveTeam('team1')}
+            />
+          </div>
+        )}
 
         {/* Center: 3D Tug of War Canvas */}
         <div className="h-full w-full min-h-[300px] flex items-center justify-center relative">
@@ -181,13 +185,15 @@ export const App: React.FC = () => {
         </div>
 
         {/* Right: Team 2 Panel (Yellow / AI Bot) */}
-        <div className="h-full flex items-center justify-center">
-          <TeamPanel
-            team="team2"
-            isKeyboardTarget={activeTeam === 'team2' && !isBotMode}
-            onFocusTeam={() => setActiveTeam('team2')}
-          />
-        </div>
+        {gamePhase !== 'ready' && (
+          <div className="h-full flex items-center justify-center">
+            <TeamPanel
+              team="team2"
+              isKeyboardTarget={activeTeam === 'team2' && !isBotMode}
+              onFocusTeam={() => setActiveTeam('team2')}
+            />
+          </div>
+        )}
       </main>
 
       {/* Overlays */}
