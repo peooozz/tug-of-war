@@ -153,7 +153,7 @@ export const App: React.FC = () => {
   }, [gamePhase, isBotMode, activeTeam, typeDigit, clearInput, submitAnswer]);
 
   return (
-    <div className="w-screen h-screen light-ambient-bg flex flex-col p-2 sm:p-3 xl:p-4 overflow-hidden select-none relative">
+    <div className="w-screen h-screen h-[100dvh] max-h-screen light-ambient-bg flex flex-col p-1.5 sm:p-2.5 lg:p-3 overflow-hidden select-none relative">
       {/* Background Animated Ambient Orbs for Authentic Optical Glassmorphism */}
       <div className="ambient-orb ambient-orb-blue" />
       <div className="ambient-orb ambient-orb-yellow" />
@@ -161,16 +161,20 @@ export const App: React.FC = () => {
 
       {/* Top Stadium HUD */}
       {gamePhase !== 'ready' && (
-        <div className="relative z-10 w-full">
+        <div className="relative z-10 w-full shrink-0">
           <StadiumHUD />
         </div>
       )}
 
       {/* Main Arena Layout */}
-      <main className={`flex-1 w-full ${gamePhase !== 'ready' ? 'flex' : 'grid grid-cols-1 md:grid-cols-[auto_1fr_auto]'} gap-2 sm:gap-3 xl:gap-4 min-h-0 relative`}>
+      <main className={`flex-1 w-full min-h-0 relative ${
+        gamePhase !== 'ready'
+          ? 'grid grid-cols-1 md:grid-cols-[auto_1fr_auto] gap-1.5 sm:gap-2.5 xl:gap-3.5 items-stretch'
+          : 'flex items-center justify-center'
+      }`}>
         {/* Left: Team 1 Panel (Blue) */}
         {gamePhase !== 'ready' && (
-          <div className="h-full flex items-center justify-center">
+          <div className="h-full max-h-full min-h-0 flex items-center justify-center">
             <TeamPanel
               team="team1"
               isKeyboardTarget={activeTeam === 'team1' || isBotMode}
@@ -180,13 +184,13 @@ export const App: React.FC = () => {
         )}
 
         {/* Center: 3D Tug of War Canvas */}
-        <div className="h-full w-full min-h-[300px] flex items-center justify-center relative">
+        <div className="h-full w-full min-h-[220px] flex items-center justify-center relative overflow-hidden rounded-2xl">
           <TugOfWarScene />
         </div>
 
         {/* Right: Team 2 Panel (Yellow / AI Bot) */}
         {gamePhase !== 'ready' && (
-          <div className="h-full flex items-center justify-center">
+          <div className="h-full max-h-full min-h-0 flex items-center justify-center">
             <TeamPanel
               team="team2"
               isKeyboardTarget={activeTeam === 'team2' && !isBotMode}

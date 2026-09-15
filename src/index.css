@@ -86,9 +86,9 @@
   100% { transform: translate(-40px, 30px) scale(0.92); }
 }
 
-/* Authentic Frosted Glassmorphism Panels */
+/* Authentic Frosted Glassmorphism Panels with Smart TV Fallbacks */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(28px) saturate(190%);
   -webkit-backdrop-filter: blur(28px) saturate(190%);
   border: 1px solid rgba(255, 255, 255, 0.85);
@@ -98,11 +98,11 @@
 }
 
 .glass-white {
-  background: rgba(255, 255, 255, 0.76);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.06), 
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.08), 
               0 0 0 1px rgba(226, 232, 240, 0.6),
               inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95);
 }
